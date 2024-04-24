@@ -106,19 +106,19 @@ public class TaskLifecycleListener
 
 	private TaskExecution taskExecution;
 
-	private TaskProperties taskProperties;
+	private final TaskProperties taskProperties;
 
-	private boolean started = false;
+	private boolean started;
 
-	private boolean finished = false;
+	private boolean finished;
 
-	private boolean listenerFailed = false;
+	private boolean listenerFailed;
 
 	private Throwable listenerException;
 
-	private TaskNameResolver taskNameResolver;
+	private final TaskNameResolver taskNameResolver;
 
-	private ApplicationArguments applicationArguments;
+	private final ApplicationArguments applicationArguments;
 
 	private Throwable applicationFailedException;
 
@@ -277,7 +277,7 @@ public class TaskLifecycleListener
 					Assert.isNull(taskExecution.getEndTime(),
 							String.format("Invalid TaskExecution, ID %s task is already complete",
 									this.taskProperties.getExecutionid()));
-					LocalDateTime startDate = (taskExecution.getStartTime() == null) ? LocalDateTime.now()
+					LocalDateTime startDate = taskExecution.getStartTime() == null ? LocalDateTime.now()
 							: taskExecution.getStartTime();
 					this.taskExecution = this.taskRepository.startTaskExecution(this.taskProperties.getExecutionid(),
 							this.taskNameResolver.getTaskName(), startDate, args,

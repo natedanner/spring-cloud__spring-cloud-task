@@ -56,9 +56,9 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 @Testcontainers
 public class TaskInitializerTests {
 
-	private final static int WAIT_INTERVAL = 500;
+	private static final int WAIT_INTERVAL = 500;
 
-	private final static int MAX_WAIT_TIME = 5000;
+	private static final int MAX_WAIT_TIME = 5000;
 
 	private DataSource dataSource;
 

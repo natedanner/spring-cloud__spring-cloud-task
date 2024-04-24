@@ -73,7 +73,7 @@ public class TaskProperties {
 	 * {@link org.springframework.cloud.task.listener.TaskExecutionException}. When task
 	 * execution ends the lock is released.
 	 */
-	private boolean singleInstanceEnabled = false;
+	private boolean singleInstanceEnabled;
 
 	/**
 	 * Declares the maximum amount of time (in millis) that a task execution can hold a

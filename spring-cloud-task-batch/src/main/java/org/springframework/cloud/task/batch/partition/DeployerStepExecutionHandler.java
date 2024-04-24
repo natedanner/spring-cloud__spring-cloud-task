@@ -59,16 +59,16 @@ import org.springframework.util.Assert;
  */
 public class DeployerStepExecutionHandler implements CommandLineRunner {
 
-	private JobExplorer jobExplorer;
+	private final JobExplorer jobExplorer;
 
-	private JobRepository jobRepository;
+	private final JobRepository jobRepository;
 
-	private Log logger = LogFactory.getLog(DeployerStepExecutionHandler.class);
+	private final Log logger = LogFactory.getLog(DeployerStepExecutionHandler.class);
 
 	@Autowired
 	private Environment environment;
 
-	private StepLocator stepLocator;
+	private final StepLocator stepLocator;
 
 	public DeployerStepExecutionHandler(BeanFactory beanFactory, JobExplorer jobExplorer, JobRepository jobRepository) {
 		Assert.notNull(beanFactory, "A beanFactory is required");

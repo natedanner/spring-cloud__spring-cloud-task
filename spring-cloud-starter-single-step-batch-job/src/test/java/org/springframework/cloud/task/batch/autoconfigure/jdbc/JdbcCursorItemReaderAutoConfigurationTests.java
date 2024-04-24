@@ -63,15 +63,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  */
 public class JdbcCursorItemReaderAutoConfigurationTests {
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "''";
+	private static final String DATASOURCE_USER_PASSWORD = "''";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
-	private static int randomPort;
+	private static final int randomPort;
 
 	static {
 		randomPort = TestSocketUtils.findAvailableTcpPort();
@@ -101,7 +101,7 @@ public class JdbcCursorItemReaderAutoConfigurationTests {
 				"spring.batch.jdbc.initialize-schema=always",
 				"spring.batch.job.jdbcsinglestep.datasource.enable=false");
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);
@@ -147,7 +147,7 @@ public class JdbcCursorItemReaderAutoConfigurationTests {
 				"jdbccursoritemreader.datasource.password=" + DATASOURCE_USER_PASSWORD,
 				"jdbccursoritemreader.datasource.driverClassName=" + DATASOURCE_DRIVER_CLASS_NAME);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);
@@ -183,7 +183,7 @@ public class JdbcCursorItemReaderAutoConfigurationTests {
 					"spring.batch.jdbc.initialize-schema=always",
 					"spring.batch.job.jdbcsinglestep.datasource.enable=false");
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);
@@ -226,7 +226,7 @@ public class JdbcCursorItemReaderAutoConfigurationTests {
 					"spring.batch.job.jdbccursoritemreader.useSharedExtendedConnection=true",
 					"spring.batch.job.jdbccursoritemreader.sql=select * from foo");
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 
 			JdbcCursorItemReader<Map<String, Object>> itemReader = context.getBean(JdbcCursorItemReader.class);
 
@@ -284,7 +284,7 @@ public class JdbcCursorItemReaderAutoConfigurationTests {
 	}
 
 	private void runTest(ApplicationContextRunner applicationContextRunner) {
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);

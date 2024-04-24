@@ -180,21 +180,21 @@ public class TaskObservationsTests {
 
 	@Test
 	public void taskWithCloudKeyValues() {
-		final String APPLICATION_ID = "123";
-		final String APPLICATION_NAME = "APP123";
-		final String SPACE_ID = "123";
-		final String SPACE_NAME = "SPACE123";
-		final String APPLICATION_VERSION = "APPV123";
-		final String INSTANCE_INDEX = "55";
-		final String ORGANIZATION_NAME = "ORG123";
+		final String applicationId = "123";
+		final String applicationName = "APP123";
+		final String spaceId = "123";
+		final String spaceName = "SPACE123";
+		final String applicationVersion = "APPV123";
+		final String instanceIndex = "55";
+		final String organizationName = "ORG123";
 		TaskObservationCloudKeyValues taskObservationCloudKeyValues = new TaskObservationCloudKeyValues();
-		taskObservationCloudKeyValues.setApplicationId(APPLICATION_ID);
-		taskObservationCloudKeyValues.setApplicationName(APPLICATION_NAME);
-		taskObservationCloudKeyValues.setSpaceId(SPACE_ID);
-		taskObservationCloudKeyValues.setSpaceName(SPACE_NAME);
-		taskObservationCloudKeyValues.setApplicationVersion(APPLICATION_VERSION);
-		taskObservationCloudKeyValues.setInstanceIndex(INSTANCE_INDEX);
-		taskObservationCloudKeyValues.setOrganizationName(ORGANIZATION_NAME);
+		taskObservationCloudKeyValues.setApplicationId(applicationId);
+		taskObservationCloudKeyValues.setApplicationName(applicationName);
+		taskObservationCloudKeyValues.setSpaceId(spaceId);
+		taskObservationCloudKeyValues.setSpaceName(spaceName);
+		taskObservationCloudKeyValues.setApplicationVersion(applicationVersion);
+		taskObservationCloudKeyValues.setInstanceIndex(instanceIndex);
+		taskObservationCloudKeyValues.setOrganizationName(organizationName);
 		this.taskObservations = new TaskObservations(this.observationRegistry, taskObservationCloudKeyValues, null);
 
 		TaskExecution taskExecution = startupObservationForBasicTests("myTask72", 123L);
@@ -208,31 +208,31 @@ public class TaskObservationsTests {
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_ORG_NAME.asString(), ORGANIZATION_NAME));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_ORG_NAME.asString(), organizationName));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_SPACE_ID.asString(), SPACE_ID));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_SPACE_ID.asString(), spaceId));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_SPACE_NAME.asString(), SPACE_NAME));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_SPACE_NAME.asString(), spaceName));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_NAME.asString(), APPLICATION_NAME));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_NAME.asString(), applicationName));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_ID.asString(), APPLICATION_ID));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_ID.asString(), applicationId));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX, Tags
-				.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_VERSION.asString(), APPLICATION_VERSION));
+				.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_APP_VERSION.asString(), applicationVersion));
 
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
 			.hasTimerWithNameAndTags(PREFIX,
-					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_INSTANCE_INDEX.asString(), INSTANCE_INDEX));
+					Tags.of(TaskExecutionObservation.TaskKeyValues.TASK_CF_INSTANCE_INDEX.asString(), instanceIndex));
 
 		// Test Timer
 		MeterRegistryAssert.assertThat(this.simpleMeterRegistry)
@@ -246,7 +246,7 @@ public class TaskObservationsTests {
 	public void testCloudVariablesUninitialized() {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withConfiguration(AutoConfigurations.of(CloudConfigurationForDefaultValues.class));
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			TaskObservationCloudKeyValues taskObservationCloudKeyValues = context
 				.getBean(TaskObservationCloudKeyValues.class);
 

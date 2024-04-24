@@ -152,9 +152,8 @@ public class SimpleTaskRepositoryJdbcTests {
 		TaskExecution expectedTaskExecution = TaskExecutionCreator
 			.createAndStoreTaskExecutionNoParams(this.taskRepository);
 		expectedTaskExecution.setExternalExecutionId(null);
-		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> {
-			this.taskRepository.updateExternalExecutionId(-1, expectedTaskExecution.getExternalExecutionId());
-		});
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
+			this.taskRepository.updateExternalExecutionId(-1, expectedTaskExecution.getExternalExecutionId()));
 	}
 
 	@Test
@@ -246,17 +245,16 @@ public class SimpleTaskRepositoryJdbcTests {
 
 	@Test
 	public void testMaxTaskNameSizeForConstructor() {
-		final int MAX_EXIT_MESSAGE_SIZE = 10;
-		final int MAX_ERROR_MESSAGE_SIZE = 20;
-		final int MAX_TASK_NAME_SIZE = 30;
+		final int maxExitMessageSize = 10;
+		final int maxErrorMessageSize = 20;
+		final int maxTaskNameSize = 30;
 		SimpleTaskRepository simpleTaskRepository = new SimpleTaskRepository(
-				new TaskExecutionDaoFactoryBean(this.dataSource), MAX_EXIT_MESSAGE_SIZE, MAX_TASK_NAME_SIZE,
-				MAX_ERROR_MESSAGE_SIZE);
+				new TaskExecutionDaoFactoryBean(this.dataSource), maxExitMessageSize, maxTaskNameSize,
+				maxErrorMessageSize);
 		TaskExecution expectedTaskExecution = TestVerifierUtils.createSampleTaskExecutionNoArg();
-		expectedTaskExecution.setTaskName(new String(new char[MAX_TASK_NAME_SIZE + 1]));
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			simpleTaskRepository.createTaskExecution(expectedTaskExecution);
-		});
+		expectedTaskExecution.setTaskName(new String(new char[maxTaskNameSize + 1]));
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			simpleTaskRepository.createTaskExecution(expectedTaskExecution));
 	}
 
 	@Test
@@ -265,18 +263,17 @@ public class SimpleTaskRepositoryJdbcTests {
 				new TaskExecutionDaoFactoryBean(this.dataSource), null, null, null);
 		TaskExecution expectedTaskExecution = TestVerifierUtils.createSampleTaskExecutionNoArg();
 		expectedTaskExecution.setTaskName(new String(new char[SimpleTaskRepository.MAX_TASK_NAME_SIZE + 1]));
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			simpleTaskRepository.createTaskExecution(expectedTaskExecution);
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			simpleTaskRepository.createTaskExecution(expectedTaskExecution));
 	}
 
 	@Test
 	public void testMaxSizeConstructor() {
-		final int MAX_EXIT_MESSAGE_SIZE = 10;
-		final int MAX_ERROR_MESSAGE_SIZE = 20;
+		final int maxExitMessageSize = 10;
+		final int maxErrorMessageSize = 20;
 		SimpleTaskRepository simpleTaskRepository = new SimpleTaskRepository(
-				new TaskExecutionDaoFactoryBean(this.dataSource), MAX_EXIT_MESSAGE_SIZE, null, MAX_ERROR_MESSAGE_SIZE);
-		verifyTaskRepositoryConstructor(MAX_EXIT_MESSAGE_SIZE, MAX_ERROR_MESSAGE_SIZE, simpleTaskRepository);
+				new TaskExecutionDaoFactoryBean(this.dataSource), maxExitMessageSize, null, maxErrorMessageSize);
+		verifyTaskRepositoryConstructor(maxExitMessageSize, maxErrorMessageSize, simpleTaskRepository);
 	}
 
 	@Test
@@ -293,9 +290,8 @@ public class SimpleTaskRepositoryJdbcTests {
 		TaskExecution taskExecution = new TaskExecution();
 		taskExecution.setTaskName(new String(new char[SimpleTaskRepository.MAX_TASK_NAME_SIZE + 1]));
 		taskExecution.setStartTime(LocalDateTime.now());
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			this.taskRepository.createTaskExecution(taskExecution);
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			this.taskRepository.createTaskExecution(taskExecution));
 	}
 
 	@Test
@@ -319,9 +315,8 @@ public class SimpleTaskRepositoryJdbcTests {
 		TaskExecution expectedTaskExecution = TaskExecutionCreator
 			.createAndStoreTaskExecutionNoParams(this.taskRepository);
 		expectedTaskExecution.setExitCode(-1);
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			TaskExecutionCreator.completeExecution(this.taskRepository, expectedTaskExecution);
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			TaskExecutionCreator.completeExecution(this.taskRepository, expectedTaskExecution));
 	}
 
 	private TaskExecution completeTaskExecution(TaskExecution expectedTaskExecution, TaskRepository taskRepository) {

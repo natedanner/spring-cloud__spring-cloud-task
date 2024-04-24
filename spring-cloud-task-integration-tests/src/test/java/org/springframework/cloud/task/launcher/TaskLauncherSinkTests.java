@@ -62,21 +62,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 				"spring.cloud.stream.bindings.input.destination=taskLauncherSinkExchange" })
 public class TaskLauncherSinkTests {
 
-	private final static int WAIT_INTERVAL = 500;
+	private static final int WAIT_INTERVAL = 500;
 
-	private final static int MAX_WAIT_TIME = 120000;
+	private static final int MAX_WAIT_TIME = 120000;
 
-	private final static String URL = "maven://io.spring.cloud:" + "timestamp-task:3.0.0-SNAPSHOT";
+	private static final String URL = "maven://io.spring.cloud:" + "timestamp-task:3.0.0-SNAPSHOT";
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "''";
+	private static final String DATASOURCE_USER_PASSWORD = "''";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
-	private final static String TASK_NAME = "TASK_LAUNCHER_SINK_TEST";
+	private static final String TASK_NAME = "TASK_LAUNCHER_SINK_TEST";
 
 	private static int randomPort;
 

@@ -95,27 +95,21 @@ public class TaskBatchExecutionListenerTests {
 	public void testNoAutoConfigurationEnabled() {
 		this.applicationContext = SpringApplication.run(JobConfiguration.class,
 				"--spring.cloud.task.batch.listener.enabled=false");
-		assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> {
-			validateContext();
-		});
+		assertThatExceptionOfType(AssertionError.class).isThrownBy(this::validateContext);
 	}
 
 	@Test
 	public void testNoAutoConfigurationEnable() {
 		this.applicationContext = SpringApplication.run(JobConfiguration.class,
 				"--spring.cloud.task.batch.listener.enable=false");
-		assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> {
-			validateContext();
-		});
+		assertThatExceptionOfType(AssertionError.class).isThrownBy(this::validateContext);
 	}
 
 	@Test
 	public void testNoAutoConfigurationBothDisabled() {
 		this.applicationContext = SpringApplication.run(JobConfiguration.class,
 				"--spring.cloud.task.batch.listener.enable=false --spring.cloud.task.batch.listener.enabled=false");
-		assertThatExceptionOfType(AssertionError.class).isThrownBy(() -> {
-			validateContext();
-		});
+		assertThatExceptionOfType(AssertionError.class).isThrownBy(this::validateContext);
 	}
 
 	@Test
@@ -248,9 +242,8 @@ public class TaskBatchExecutionListenerTests {
 
 	@Test
 	public void testBatchExecutionListenerBeanPostProcessorNullJobNames() {
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			beanPostProcessor(null);
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			beanPostProcessor(null));
 	}
 
 	private TaskBatchExecutionListenerBeanPostProcessor beanPostProcessor(List<String> jobNames) {
@@ -330,7 +323,7 @@ public class TaskBatchExecutionListenerTests {
 
 		@Bean
 		public FactoryBean<Job> job(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-			return new FactoryBean<Job>() {
+			return new FactoryBean<>() {
 				@Override
 				public Job getObject() {
 					return new JobBuilder("job", jobRepository)

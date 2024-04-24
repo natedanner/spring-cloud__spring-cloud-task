@@ -26,9 +26,9 @@ import org.springframework.batch.item.UnexpectedInputException;
  */
 public class SkipItemReader implements ItemReader {
 
-	int failCount = 0;
+	int failCount;
 
-	boolean finished = false;
+	boolean finished;
 
 	@Override
 	public Object read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {

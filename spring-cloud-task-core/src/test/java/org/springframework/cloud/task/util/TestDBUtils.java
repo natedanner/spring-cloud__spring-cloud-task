@@ -71,13 +71,12 @@ public final class TestDBUtils {
 		List<TaskExecution> rows = jdbcTemplate.query(sql, new RowMapper<TaskExecution>() {
 			@Override
 			public TaskExecution mapRow(ResultSet rs, int rownumber) throws SQLException {
-				TaskExecution taskExecution = new TaskExecution(rs.getLong("TASK_EXECUTION_ID"),
+				return new TaskExecution(rs.getLong("TASK_EXECUTION_ID"),
 						StringUtils.hasText(rs.getString("EXIT_CODE")) ? Integer.valueOf(rs.getString("EXIT_CODE"))
 								: null,
 						rs.getString("TASK_NAME"), rs.getObject("START_TIME", LocalDateTime.class),
 						rs.getObject("END_TIME", LocalDateTime.class), rs.getString("EXIT_MESSAGE"), new ArrayList<>(0),
 						rs.getString("ERROR_MESSAGE"), rs.getString("EXTERNAL_EXECUTION_ID"));
-				return taskExecution;
 			}
 		});
 		assertThat(rows.size()).as("only one row should be returned").isEqualTo(1);

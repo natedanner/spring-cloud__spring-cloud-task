@@ -625,7 +625,7 @@ public class JdbcTaskExecutionDao implements TaskExecutionDao {
 
 		private Integer getNullableExitCode(ResultSet rs) throws SQLException {
 			int exitCode = rs.getInt("EXIT_CODE");
-			return !rs.wasNull() ? exitCode : null;
+			return rs.wasNull() ? null : exitCode;
 		}
 
 	}

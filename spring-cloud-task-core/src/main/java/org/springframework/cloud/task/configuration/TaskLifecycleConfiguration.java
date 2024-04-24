@@ -59,7 +59,7 @@ public class TaskLifecycleConfiguration {
 
 	private TaskLifecycleListener taskLifecycleListener;
 
-	private boolean initialized = false;
+	private boolean initialized;
 
 	private ObservationRegistry observationRegistry;
 

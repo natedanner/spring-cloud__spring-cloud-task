@@ -39,20 +39,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TaskLauncherFunctionTests {
 
-	private final static String TASK_NAME_PREFIX = "Task-";
+	private static final String TASK_NAME_PREFIX = "Task-";
 
-	private final static String APP_NAME = "MY_APP_NAME";
+	private static final String APP_NAME = "MY_APP_NAME";
 
-	private final static String PARAM1 = "FOO";
+	private static final String PARAM1 = "FOO";
 
-	private final static String PARAM2 = "BAR";
+	private static final String PARAM2 = "BAR";
 
-	private final static String VALID_URL = "maven://org.springframework.cloud.task.app:"
+	private static final String VALID_URL = "maven://org.springframework.cloud.task.app:"
 			+ "timestamp-task:jar:1.0.1.RELEASE";
 
-	private final static String INVALID_URL = "maven://not.real.group:" + "invalid:jar:1.0.0.BUILD-SNAPSHOT";
+	private static final String INVALID_URL = "maven://not.real.group:" + "invalid:jar:1.0.0.BUILD-SNAPSHOT";
 
-	private final static String DEFAULT_STATUS = "test_status";
+	private static final String DEFAULT_STATUS = "test_status";
 
 	private Map<String, String> properties;
 

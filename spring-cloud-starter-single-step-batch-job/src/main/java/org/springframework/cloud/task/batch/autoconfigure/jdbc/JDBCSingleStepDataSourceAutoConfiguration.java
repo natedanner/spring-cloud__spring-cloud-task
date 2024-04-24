@@ -61,8 +61,7 @@ class JDBCSingleStepDataSourceAutoConfiguration {
 	@Primary
 	public DataSource dataSource(
 			@Qualifier("springDataSourceProperties") DataSourceProperties springDataSourceProperties) {
-		DataSource dataSource = springDataSourceProperties.initializeDataSourceBuilder().build();
-		return dataSource;
+		return springDataSourceProperties.initializeDataSourceBuilder().build();
 	}
 
 }

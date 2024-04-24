@@ -48,7 +48,7 @@ public class JdbcCursorItemReaderProperties {
 	 * Index for the current item. Also used on restarts to indicate where to start from.
 	 * Defaults to 0.
 	 */
-	private int currentItemCount = 0;
+	private int currentItemCount;
 
 	/**
 	 * The number of items to return each time the cursor fetches from the server.

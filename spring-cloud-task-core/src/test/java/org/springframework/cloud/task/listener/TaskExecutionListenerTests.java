@@ -50,11 +50,11 @@ public class TaskExecutionListenerTests {
 
 	private static final String EXCEPTION_MESSAGE = "This was expected";
 
-	private static boolean beforeTaskDidFireOnError = false;
+	private static boolean beforeTaskDidFireOnError;
 
-	private static boolean endTaskDidFireOnError = false;
+	private static boolean endTaskDidFireOnError;
 
-	private static boolean failedTaskDidFireOnError = false;
+	private static boolean failedTaskDidFireOnError;
 
 	private AnnotationConfigApplicationContext context;
 

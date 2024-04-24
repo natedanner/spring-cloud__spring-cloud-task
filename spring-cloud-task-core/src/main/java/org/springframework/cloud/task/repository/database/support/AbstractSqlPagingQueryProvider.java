@@ -145,7 +145,7 @@ public abstract class AbstractSqlPagingQueryProvider implements PagingQueryProvi
 		}
 		List<String> namedParameters = new ArrayList<>();
 		this.parameterCount = JdbcParameterUtils.countParameterPlaceholders(sql.toString(), namedParameters);
-		if (namedParameters.size() > 0) {
+		if (!namedParameters.isEmpty()) {
 			if (this.parameterCount != namedParameters.size()) {
 				throw new InvalidDataAccessApiUsageException(
 						"You can't use both named parameters and classic \"?\" placeholders: " + sql);

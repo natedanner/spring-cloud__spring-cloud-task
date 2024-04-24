@@ -45,7 +45,7 @@ public class SimpleSingleTaskAutoConfigurationWithDataSourceTests {
 					AutoConfigurations.of(PropertyPlaceholderAutoConfiguration.class, SimpleTaskAutoConfiguration.class,
 							SingleTaskConfiguration.class, EmbeddedDataSourceConfiguration.class))
 			.withPropertyValues("spring.cloud.task.singleInstanceEnabled=true");
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			SingleInstanceTaskListener singleInstanceTaskListener = context.getBean(SingleInstanceTaskListener.class);
 
 			assertThat(singleInstanceTaskListener).as("singleInstanceTaskListener should not be null").isNotNull();

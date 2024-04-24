@@ -45,13 +45,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ExtendWith(OutputCaptureExtension.class)
 public class JpaApplicationTests {
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "";
+	private static final String DATASOURCE_USER_PASSWORD = "";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
 	private static int randomPort;
 
@@ -95,13 +95,13 @@ public class JpaApplicationTests {
 
 	@Test
 	public void testBatchJobApp(CapturedOutput capturedOutput) {
-		final String INSERT_MESSAGE = "Hibernate: insert into task_run_output (";
+		final String insertMessage = "Hibernate: insert into task_run_output (";
 		this.context = SpringApplication.run(JpaApplication.class, "--spring.datasource.url=" + DATASOURCE_URL,
 				"--spring.datasource.username=" + DATASOURCE_USER_NAME,
 				"--spring.datasource.driverClassName=" + DATASOURCE_DRIVER_CLASS_NAME,
 				"--spring.jpa.database-platform=org.hibernate.dialect.H2Dialect");
 		String output = capturedOutput.toString();
-		assertThat(output.contains(INSERT_MESSAGE)).as("Unable to find the insert message: " + output).isTrue();
+		assertThat(output.contains(insertMessage)).as("Unable to find the insert message: " + output).isTrue();
 		JdbcTemplate template = new JdbcTemplate(this.dataSource);
 		Map<String, Object> result = template.queryForMap("Select * from TASK_RUN_OUTPUT");
 		assertThat(result.get("ID")).isEqualTo(1L);

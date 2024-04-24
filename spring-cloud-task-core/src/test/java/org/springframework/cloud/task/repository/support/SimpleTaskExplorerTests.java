@@ -56,9 +56,9 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class SimpleTaskExplorerTests {
 
-	private final static String TASK_NAME = "FOOBAR";
+	private static final String TASK_NAME = "FOOBAR";
 
-	private final static String EXTERNAL_EXECUTION_ID = "123ABC";
+	private static final String EXTERNAL_EXECUTION_ID = "123ABC";
 
 	private AnnotationConfigApplicationContext context;
 
@@ -150,17 +150,17 @@ public class SimpleTaskExplorerTests {
 	@MethodSource("data")
 	public void findRunningTasks(DaoType testType) {
 		testDefaultContext(testType);
-		final int TEST_COUNT = 2;
-		final int COMPLETE_COUNT = 5;
+		final int testCount = 2;
+		final int completeCount = 5;
 
 		Map<Long, TaskExecution> expectedResults = new HashMap<>();
 		// Store completed task executions
 		int i = 0;
-		for (; i < COMPLETE_COUNT; i++) {
+		for (; i < completeCount; i++) {
 			createAndSaveTaskExecution(i);
 		}
 
-		for (; i < (COMPLETE_COUNT + TEST_COUNT); i++) {
+		for (; i < (completeCount + testCount); i++) {
 			TaskExecution expectedTaskExecution = this.taskRepository.createTaskExecution(getSimpleTaskExecution());
 			expectedResults.put(expectedTaskExecution.getExecutionId(), expectedTaskExecution);
 		}
@@ -170,7 +170,7 @@ public class SimpleTaskExplorerTests {
 		assertThat(actualResults.getNumberOfElements())
 			.as(String.format("Running task count for task name did not match expected result for testType %s",
 					testType))
-			.isEqualTo(TEST_COUNT);
+			.isEqualTo(testCount);
 
 		for (TaskExecution result : actualResults) {
 			assertThat(expectedResults.containsKey(result.getExecutionId()))
@@ -205,30 +205,29 @@ public class SimpleTaskExplorerTests {
 		testDefaultContext(testType);
 
 		testDefaultContext(testType);
-		final int SAME_EXTERNAL_ID_COUNT = 2;
-		final int UNIQUE_COUNT = 3;
+		final int sameExternalIdCount = 2;
+		final int uniqueCount = 3;
 
 		Map<Long, TaskExecution> expectedResults = new HashMap<>();
 		// Store task executions each with a unique external execution id
 		int i = 0;
-		for (; i < UNIQUE_COUNT; i++) {
+		for (; i < uniqueCount; i++) {
 			createAndSaveTaskExecution(i);
 		}
 		// Create task execution with same external execution id
-		for (; i < (UNIQUE_COUNT + SAME_EXTERNAL_ID_COUNT); i++) {
+		for (; i < (uniqueCount + sameExternalIdCount); i++) {
 			TaskExecution expectedTaskExecution = this.taskRepository.createTaskExecution(getSimpleTaskExecution());
 			expectedResults.put(expectedTaskExecution.getExecutionId(), expectedTaskExecution);
 		}
 		Pageable pageable = PageRequest.of(0, 10);
 		Page<TaskExecution> resultSet = this.taskExplorer.findTaskExecutionsByExecutionId(EXTERNAL_EXECUTION_ID,
 				pageable);
-		assertThat(resultSet.getTotalElements()).isEqualTo(SAME_EXTERNAL_ID_COUNT);
+		assertThat(resultSet.getTotalElements()).isEqualTo(sameExternalIdCount);
 		List<TaskExecution> taskExecutions = resultSet.getContent();
-		taskExecutions.forEach(taskExecution -> {
-			assertThat(expectedResults.keySet()).contains(taskExecution.getExecutionId());
-		});
+		taskExecutions.forEach(taskExecution ->
+			assertThat(expectedResults.keySet()).contains(taskExecution.getExecutionId()));
 		assertThat(this.taskExplorer.getTaskExecutionCountByExternalExecutionId(EXTERNAL_EXECUTION_ID))
-			.isEqualTo(SAME_EXTERNAL_ID_COUNT);
+			.isEqualTo(sameExternalIdCount);
 
 	}
 
@@ -236,16 +235,16 @@ public class SimpleTaskExplorerTests {
 	@MethodSource("data")
 	public void findTasksByName(DaoType testType) {
 		testDefaultContext(testType);
-		final int TEST_COUNT = 5;
-		final int COMPLETE_COUNT = 7;
+		final int testCount = 5;
+		final int completeCount = 7;
 
 		Map<Long, TaskExecution> expectedResults = new HashMap<>();
 		// Store completed task executions
-		for (int i = 0; i < COMPLETE_COUNT; i++) {
+		for (int i = 0; i < completeCount; i++) {
 			createAndSaveTaskExecution(i);
 		}
 
-		for (int i = 0; i < TEST_COUNT; i++) {
+		for (int i = 0; i < testCount; i++) {
 			TaskExecution expectedTaskExecution = this.taskRepository.createTaskExecution(getSimpleTaskExecution());
 			expectedResults.put(expectedTaskExecution.getExecutionId(), expectedTaskExecution);
 		}
@@ -255,7 +254,7 @@ public class SimpleTaskExplorerTests {
 		assertThat(resultSet.getNumberOfElements())
 			.as(String.format("Running task count for task name did not match expected result for testType %s",
 					testType))
-			.isEqualTo(TEST_COUNT);
+			.isEqualTo(testCount);
 
 		for (TaskExecution result : resultSet) {
 			assertThat(expectedResults.containsKey(result.getExecutionId()))
@@ -271,9 +270,9 @@ public class SimpleTaskExplorerTests {
 	@MethodSource("data")
 	public void getTaskNames(DaoType testType) {
 		testDefaultContext(testType);
-		final int TEST_COUNT = 5;
+		final int testCount = 5;
 		Set<String> expectedResults = new HashSet<>();
-		for (int i = 0; i < TEST_COUNT; i++) {
+		for (int i = 0; i < testCount; i++) {
 			TaskExecution expectedTaskExecution = createAndSaveTaskExecution(i);
 			expectedResults.add(expectedTaskExecution.getTaskName());
 		}
@@ -466,7 +465,7 @@ public class SimpleTaskExplorerTests {
 			public int compare(TaskExecution e1, TaskExecution e2) {
 				int result = e1.getStartTime().compareTo(e2.getStartTime());
 				if (result == 0) {
-					result = Long.valueOf(e1.getExecutionId()).compareTo(e2.getExecutionId());
+					result = Long.compare(e1.getExecutionId(), e2.getExecutionId());
 				}
 				return result;
 			}

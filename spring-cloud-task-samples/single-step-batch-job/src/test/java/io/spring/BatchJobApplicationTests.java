@@ -51,15 +51,15 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class BatchJobApplicationTests {
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "''";
+	private static final String DATASOURCE_USER_PASSWORD = "''";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
-	private static int randomPort;
+	private static final int randomPort;
 
 	private static Server defaultServer;
 

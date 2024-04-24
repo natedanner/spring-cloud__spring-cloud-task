@@ -39,7 +39,7 @@ import org.springframework.core.env.PropertySource;
  */
 public class SimpleEnvironmentVariablesProvider implements EnvironmentVariablesProvider {
 
-	private Environment environment;
+	private final Environment environment;
 
 	private Map<String, String> environmentProperties = new HashMap<>(0);
 

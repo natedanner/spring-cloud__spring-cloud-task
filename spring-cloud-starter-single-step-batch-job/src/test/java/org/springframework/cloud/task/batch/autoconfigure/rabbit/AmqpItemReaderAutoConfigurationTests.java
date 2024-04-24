@@ -115,7 +115,7 @@ public class AmqpItemReaderAutoConfigurationTests {
 					"spring.rabbitmq.template.default-receive-queue=foo", "spring.rabbitmq.host=" + host,
 					"spring.rabbitmq.port=" + amqpPort);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobExecution jobExecution = runJob(context);
 
 			JobExplorer jobExplorer = context.getBean(JobExplorer.class);
@@ -141,7 +141,7 @@ public class AmqpItemReaderAutoConfigurationTests {
 					"spring.rabbitmq.template.default-receive-queue=foo", "spring.rabbitmq.host=" + host,
 					"spring.rabbitmq.port=" + amqpPort);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobExecution jobExecution = runJob(context);
 
 			JobExplorer jobExplorer = context.getBean(JobExplorer.class);
@@ -164,7 +164,7 @@ public class AmqpItemReaderAutoConfigurationTests {
 					"spring.batch.job.chunkSize=5", "spring.batch.job.amqpitemreader.enabled=true",
 					"spring.rabbitmq.host=" + host, "spring.rabbitmq.port=" + amqpPort);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			runJob(context);
 			AmqpTemplate amqpTemplate = context.getBean(AmqpTemplate.class);
 			Mockito.verify(amqpTemplate, Mockito.times(1)).receiveAndConvert();

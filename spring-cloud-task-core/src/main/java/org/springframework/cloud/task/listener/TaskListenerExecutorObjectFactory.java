@@ -55,7 +55,7 @@ public class TaskListenerExecutorObjectFactory implements ObjectFactory<TaskExec
 
 	private final Set<Class<?>> nonAnnotatedClasses = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
-	private ConfigurableApplicationContext context;
+	private final ConfigurableApplicationContext context;
 
 	private Map<Method, Set<Object>> beforeTaskInstances;
 

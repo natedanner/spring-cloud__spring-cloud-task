@@ -153,10 +153,9 @@ public class JdbcTaskExecutionDaoMariaDBIntegrationTests extends BaseTaskExecuti
 		JdbcTaskExecutionDao dao = new JdbcTaskExecutionDao(this.dataSource);
 
 		TaskExecution expectedTaskExecution = TestVerifierUtils.endSampleTaskExecutionNoArg();
-		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> {
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 			dao.completeTaskExecution(expectedTaskExecution.getExecutionId(), expectedTaskExecution.getExitCode(),
-					expectedTaskExecution.getEndTime(), expectedTaskExecution.getExitMessage());
-		});
+					expectedTaskExecution.getEndTime(), expectedTaskExecution.getExitMessage()));
 	}
 
 	@Test
@@ -250,7 +249,7 @@ public class JdbcTaskExecutionDaoMariaDBIntegrationTests extends BaseTaskExecuti
 	}
 
 	private Iterator<TaskExecution> getPageIterator(int pageNum, int pageSize, Sort sort) {
-		Pageable pageable = (sort == null) ? PageRequest.of(pageNum, pageSize)
+		Pageable pageable = sort == null ? PageRequest.of(pageNum, pageSize)
 				: PageRequest.of(pageNum, pageSize, sort);
 		Page<TaskExecution> page = this.dao.findAll(pageable);
 		assertThat(page.getTotalElements()).isEqualTo(3);

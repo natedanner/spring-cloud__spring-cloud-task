@@ -39,9 +39,7 @@ public class TimestampTaskPropertiesTests {
 		context.register(Conf.class);
 		context.refresh();
 		TimestampTaskProperties properties = context.getBean(TimestampTaskProperties.class);
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			properties.getFormat();
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(properties::getFormat);
 	}
 
 	@Test
@@ -56,13 +54,13 @@ public class TimestampTaskPropertiesTests {
 
 	@Test
 	public void testFormatSet() {
-		final String FORMAT = "yyyy";
+		final String format = "yyyy";
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
 		context.register(Conf.class);
 		context.refresh();
 		TimestampTaskProperties properties = context.getBean(TimestampTaskProperties.class);
-		properties.setFormat(FORMAT);
-		assertThat(properties.getFormat()).as("result does not match established format.").isEqualTo(FORMAT);
+		properties.setFormat(format);
+		assertThat(properties.getFormat()).as("result does not match established format.").isEqualTo(format);
 	}
 
 	@Configuration(proxyBeanMethods = false)

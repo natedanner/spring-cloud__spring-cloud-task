@@ -34,7 +34,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class FindAllPagingQueryProviderTests {
 
-	private Pageable pageable = PageRequest.of(0, 10);
+	private final Pageable pageable = PageRequest.of(0, 10);
 
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] { { "Oracle", "SELECT TASK_EXECUTION_ID, START_TIME, END_TIME, TASK_NAME, "

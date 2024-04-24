@@ -61,12 +61,12 @@ public class FlatFileItemWriterProperties {
 	/**
 	 * Configure the maximum record length. If 0, the size is unbounded.
 	 */
-	private int maximumLength = 0;
+	private int maximumLength;
 
 	/**
 	 * Configure the minimum record length.
 	 */
-	private int minimumLength = 0;
+	private int minimumLength;
 
 	/**
 	 * Configure the {@code String} used to delimit the fields in the output file.
@@ -83,7 +83,7 @@ public class FlatFileItemWriterProperties {
 	 * A flag indicating that changes should be force-synced to disk on flush. Defaults to
 	 * {@code false}.
 	 */
-	private boolean forceSync = false;
+	private boolean forceSync;
 
 	/**
 	 * Names of the fields to be extracted into the output.
@@ -94,7 +94,7 @@ public class FlatFileItemWriterProperties {
 	 * Configure if the output file is found if it should be appended to. Defaults to
 	 * {@code false}.
 	 */
-	private boolean append = false;
+	private boolean append;
 
 	/**
 	 * String used to separate lines in output. Defaults to the {@code System} property
@@ -118,7 +118,7 @@ public class FlatFileItemWriterProperties {
 	 * Indicates whether the output file should be deleted if no output was written to it.
 	 * Defaults to {@code false}.
 	 */
-	private boolean shouldDeleteIfEmpty = false;
+	private boolean shouldDeleteIfEmpty;
 
 	/**
 	 * Indicates whether an existing output file should be deleted on startup. Defaults to

@@ -62,7 +62,7 @@ public class SqlPagingQueryProviderFactoryBean implements FactoryBean<PagingQuer
 
 	private Map<String, Order> sortKeys;
 
-	private Map<DatabaseType, AbstractSqlPagingQueryProvider> providers = new HashMap<>();
+	private final Map<DatabaseType, AbstractSqlPagingQueryProvider> providers = new HashMap<>();
 
 	{
 		this.providers.put(HSQL, new HsqlPagingQueryProvider());

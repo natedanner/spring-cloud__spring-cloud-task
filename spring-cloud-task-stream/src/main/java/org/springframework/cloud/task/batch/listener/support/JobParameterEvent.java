@@ -80,9 +80,9 @@ public class JobParameterEvent {
 
 	@Override
 	public int hashCode() {
-		final int BASE_HASH = 7;
-		final int MULTIPLIER_HASH = 21;
-		return BASE_HASH + MULTIPLIER_HASH * this.parameter.hashCode();
+		final int baseHash = 7;
+		final int multiplierHash = 21;
+		return baseHash + multiplierHash * this.parameter.hashCode();
 	}
 
 }

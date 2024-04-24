@@ -244,17 +244,17 @@ public abstract class BaseTaskExecutionDaoTestCases {
 
 	protected long initializeRepositoryNotInOrderWithMultipleTaskExecutions() {
 
-		final TaskExecution foo1_0 = getTaskExecution("FOO1", "externalC");
-		foo1_0.setStartTime(getDate(2015, 2, 22, 23, 59));
+		final TaskExecution foo10 = getTaskExecution("FOO1", "externalC");
+		foo10.setStartTime(getDate(2015, 2, 22, 23, 59));
 
-		final TaskExecution foo1_1 = getTaskExecution("FOO1", "externalC");
-		foo1_1.setStartTime(getDate(2015, 2, 20, 14, 45));
+		final TaskExecution foo11 = getTaskExecution("FOO1", "externalC");
+		foo11.setStartTime(getDate(2015, 2, 20, 14, 45));
 
-		final TaskExecution foo1_2 = getTaskExecution("FOO1", "externalC");
-		foo1_2.setStartTime(getDate(2015, 1, 19, 14, 30));
+		final TaskExecution foo12 = getTaskExecution("FOO1", "externalC");
+		foo12.setStartTime(getDate(2015, 1, 19, 14, 30));
 
-		final TaskExecution foo1_3 = getTaskExecution("FOO1", "externalC");
-		foo1_3.setStartTime(getDate(2015, 1, 20, 14, 45));
+		final TaskExecution foo13 = getTaskExecution("FOO1", "externalC");
+		foo13.setStartTime(getDate(2015, 1, 20, 14, 45));
 
 		TaskExecution foo2 = getTaskExecution("FOO2", "externalA");
 		foo2.setStartTime(getDate(2015, 4, 20, 14, 45));
@@ -265,27 +265,27 @@ public abstract class BaseTaskExecutionDaoTestCases {
 		TaskExecution foo4 = getTaskExecution("FOO4", "externalB");
 		foo4.setStartTime(getDate(2015, 2, 20, 14, 45));
 
-		final TaskExecution foo5_0 = getTaskExecution("FOO5", "externalC");
-		foo5_0.setStartTime(getDate(2015, 2, 22, 23, 59));
+		final TaskExecution foo50 = getTaskExecution("FOO5", "externalC");
+		foo50.setStartTime(getDate(2015, 2, 22, 23, 59));
 
-		final TaskExecution foo5_1 = getTaskExecution("FOO5", "externalC");
-		foo5_1.setStartTime(getDate(2015, 2, 22, 23, 59));
+		final TaskExecution foo51 = getTaskExecution("FOO5", "externalC");
+		foo51.setStartTime(getDate(2015, 2, 22, 23, 59));
 
-		final TaskExecution foo5_2 = getTaskExecution("FOO5", "externalC");
-		foo5_2.setStartTime(getDate(2015, 2, 22, 23, 59));
+		final TaskExecution foo52 = getTaskExecution("FOO5", "externalC");
+		foo52.setStartTime(getDate(2015, 2, 22, 23, 59));
 
-		long executionIdOffset = this.createTaskExecution(foo1_0);
-		this.createTaskExecution(foo1_1);
-		this.createTaskExecution(foo1_2);
-		this.createTaskExecution(foo1_3);
+		long executionIdOffset = this.createTaskExecution(foo10);
+		this.createTaskExecution(foo11);
+		this.createTaskExecution(foo12);
+		this.createTaskExecution(foo13);
 
 		this.createTaskExecution(foo2);
 		this.createTaskExecution(foo3);
 		this.createTaskExecution(foo4);
 
-		this.createTaskExecution(foo5_0);
-		this.createTaskExecution(foo5_1);
-		this.createTaskExecution(foo5_2);
+		this.createTaskExecution(foo50);
+		this.createTaskExecution(foo51);
+		this.createTaskExecution(foo52);
 
 		return executionIdOffset;
 	}

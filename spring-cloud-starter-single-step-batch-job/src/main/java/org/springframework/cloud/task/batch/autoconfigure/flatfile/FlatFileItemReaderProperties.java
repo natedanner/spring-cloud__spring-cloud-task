@@ -54,7 +54,7 @@ public class FlatFileItemReaderProperties {
 	/**
 	 * Index for the current item. Also used on restarts to indicate where to start from.
 	 */
-	private int currentItemCount = 0;
+	private int currentItemCount;
 
 	/**
 	 * A list of {@code String} elements used to indicate which records are comments.
@@ -81,12 +81,12 @@ public class FlatFileItemReaderProperties {
 	/**
 	 * The number of lines to skip at the beginning of reading the file.
 	 */
-	private int linesToSkip = 0;
+	private int linesToSkip;
 
 	/**
 	 * Indicates that a {@link DelimitedLineTokenizer} should be used to parse each line.
 	 */
-	private boolean delimited = false;
+	private boolean delimited;
 
 	/**
 	 * Define the delimiter for the file.
@@ -108,7 +108,7 @@ public class FlatFileItemReaderProperties {
 	 * {@link org.springframework.batch.item.file.transform.FixedLengthTokenizer} should
 	 * be used to parse the records in the file.
 	 */
-	private boolean fixedLength = false;
+	private boolean fixedLength;
 
 	/**
 	 * The column ranges to be used to parse a fixed width file.

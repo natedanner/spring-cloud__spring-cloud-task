@@ -33,21 +33,21 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class JobParametersEventTests {
 
-	private final static JobParameter STRING_PARAM = new JobParameter("FOO", String.class);
+	private static final JobParameter STRING_PARAM = new JobParameter("FOO", String.class);
 
-	private final static JobParameter DATE_PARAM = new JobParameter(new Date(), Date.class);
+	private static final JobParameter DATE_PARAM = new JobParameter(new Date(), Date.class);
 
-	private final static JobParameter LONG_PARAM = new JobParameter(1L, Long.class);
+	private static final JobParameter LONG_PARAM = new JobParameter(1L, Long.class);
 
-	private final static JobParameter DOUBLE_PARAM = new JobParameter(2D, Double.class);
+	private static final JobParameter DOUBLE_PARAM = new JobParameter(2D, Double.class);
 
-	private final static String DATE_KEY = "DATE_KEY";
+	private static final String DATE_KEY = "DATE_KEY";
 
-	private final static String STRING_KEY = "STRING_KEY";
+	private static final String STRING_KEY = "STRING_KEY";
 
-	private final static String LONG_KEY = "LONG_KEY";
+	private static final String LONG_KEY = "LONG_KEY";
 
-	private final static String DOUBLE_KEY = "DOUBLE_KEY";
+	private static final String DOUBLE_KEY = "DOUBLE_KEY";
 
 	@Test
 	public void testDefaultConstructor() {

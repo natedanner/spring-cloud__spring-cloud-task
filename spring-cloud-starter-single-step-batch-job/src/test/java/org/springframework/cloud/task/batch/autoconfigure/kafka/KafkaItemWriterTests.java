@@ -81,7 +81,7 @@ public class KafkaItemWriterTests {
 					"spring.kafka.producer.keySerializer=org.springframework.kafka.support.serializer.JsonSerializer",
 					"spring.batch.job.kafkaitemwriter.topic=" + topicName);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			waitForTopicPopulation(context);
 			validateResults(topicName);
 		});
@@ -97,9 +97,8 @@ public class KafkaItemWriterTests {
 		ConsumerRecords<String, Object> consumerRecords = KafkaTestUtils.getRecords(consumer);
 		assertThat(consumerRecords.count()).isEqualTo(5);
 		List<Map<String, Object>> result = new ArrayList<>();
-		consumerRecords.forEach(cs -> {
-			result.add((Map<String, Object>) cs.value());
-		});
+		consumerRecords.forEach(cs ->
+			result.add((Map<String, Object>) cs.value()));
 		List<String> firstNames = new ArrayList<>();
 		result.forEach(s -> firstNames.add((String) s.get("first_name")));
 		assertThat(firstNames.size()).isEqualTo(5);

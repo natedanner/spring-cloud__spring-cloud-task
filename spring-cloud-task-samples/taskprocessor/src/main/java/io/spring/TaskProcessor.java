@@ -44,7 +44,7 @@ public class TaskProcessor {
 
 	@Bean
 	public Function<Message<String>, Message<TaskLaunchRequest>> processRequest() {
-		return (messagePayload) -> {
+		return messagePayload -> {
 			String message = messagePayload.getPayload();
 			Map<String, String> properties = new HashMap<>();
 			if (StringUtils.hasText(this.processorProperties.getDataSourceUrl())) {

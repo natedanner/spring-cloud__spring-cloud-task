@@ -95,7 +95,7 @@ public class TaskExecutionDaoTests extends BaseTaskExecutionDaoTestCases {
 	}
 
 	private TaskExecutionDao getDao(String type) {
-		if (type.equals("db")) {
+		if ("db".equals(type)) {
 			final JdbcTaskExecutionDao jdbcDao = new JdbcTaskExecutionDao(this.dataSource);
 			jdbcDao.setTaskIncrementer(TestDBUtils.getIncrementer(this.dataSource));
 			this.dao = jdbcDao;
@@ -109,7 +109,7 @@ public class TaskExecutionDaoTests extends BaseTaskExecutionDaoTestCases {
 
 	private TaskExecution getTaskExecution(String type, TaskExecution expectedTaskExecution) {
 		TaskExecution taskExecution;
-		if (type.equals("db")) {
+		if ("db".equals(type)) {
 			taskExecution = TestDBUtils.getTaskExecutionFromDB(this.dataSource, expectedTaskExecution.getExecutionId());
 		}
 		else {
@@ -166,10 +166,9 @@ public class TaskExecutionDaoTests extends BaseTaskExecutionDaoTestCases {
 		JdbcTaskExecutionDao dao = new JdbcTaskExecutionDao(this.dataSource);
 
 		TaskExecution expectedTaskExecution = TestVerifierUtils.endSampleTaskExecutionNoArg();
-		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> {
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
 			dao.completeTaskExecution(expectedTaskExecution.getExecutionId(), expectedTaskExecution.getExitCode(),
-					expectedTaskExecution.getEndTime(), expectedTaskExecution.getExitMessage());
-		});
+					expectedTaskExecution.getEndTime(), expectedTaskExecution.getExitMessage()));
 	}
 
 	@Test
@@ -265,7 +264,7 @@ public class TaskExecutionDaoTests extends BaseTaskExecutionDaoTestCases {
 	}
 
 	private Iterator<TaskExecution> getPageIterator(int pageNum, int pageSize, Sort sort) {
-		Pageable pageable = (sort == null) ? PageRequest.of(pageNum, pageSize)
+		Pageable pageable = sort == null ? PageRequest.of(pageNum, pageSize)
 				: PageRequest.of(pageNum, pageSize, sort);
 		Page<TaskExecution> page = this.dao.findAll(pageable);
 		assertThat(page.getTotalElements()).isEqualTo(3);

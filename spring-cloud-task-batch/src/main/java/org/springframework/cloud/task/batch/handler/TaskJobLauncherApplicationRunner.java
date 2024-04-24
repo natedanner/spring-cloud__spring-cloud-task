@@ -172,7 +172,7 @@ public class TaskJobLauncherApplicationRunner extends JobLauncherApplicationRunn
 				}
 			}
 
-			if (failedJobExecutions.size() > 0) {
+			if (!failedJobExecutions.isEmpty()) {
 				throwJobFailedException(failedJobExecutions);
 			}
 			return RepeatStatus.FINISHED;
@@ -216,7 +216,7 @@ public class TaskJobLauncherApplicationRunner extends JobLauncherApplicationRunn
 
 	private boolean isStoppedOrFailed(JobExecution execution) {
 		BatchStatus status = execution.getStatus();
-		return (status == BatchStatus.STOPPED || status == BatchStatus.FAILED);
+		return status == BatchStatus.STOPPED || status == BatchStatus.FAILED;
 	}
 
 	private JobParameters merge(JobParameters parameters, JobParameters additionals) {

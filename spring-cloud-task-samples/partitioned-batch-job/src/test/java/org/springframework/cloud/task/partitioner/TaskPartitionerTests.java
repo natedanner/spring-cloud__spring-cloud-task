@@ -53,19 +53,19 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = { TaskPartitionerTests.TaskLauncherConfiguration.class })
 public class TaskPartitionerTests {
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "";
+	private static final String DATASOURCE_USER_PASSWORD = "";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
-	private static String DATASOURCE_URL;
+	private static String datasourceUrl;
 
 	private static int randomPort;
 
 	static {
 		randomPort = TestSocketUtils.findAvailableTcpPort();
-		DATASOURCE_URL = "jdbc:h2:tcp://localhost:" + randomPort + "/mem:dataflow;DB_CLOSE_DELAY=-1;"
+		datasourceUrl = "jdbc:h2:tcp://localhost:" + randomPort + "/mem:dataflow;DB_CLOSE_DELAY=-1;"
 				+ "DB_CLOSE_ON_EXIT=FALSE";
 	}
 
@@ -107,7 +107,7 @@ public class TaskPartitionerTests {
 		SpringApplication app = new SpringApplication(PartitionedBatchJobApplication.class);
 		app.setAdditionalProfiles("master");
 		Properties properties = new Properties();
-		properties.setProperty("spring.datasource.url", DATASOURCE_URL);
+		properties.setProperty("spring.datasource.url", datasourceUrl);
 		properties.setProperty("spring.datasource.username", DATASOURCE_USER_NAME);
 		properties.setProperty("spring.datasource.driverClassName", DATASOURCE_DRIVER_CLASS_NAME);
 		properties.setProperty("spring.cloud.deployer.local.use-spring-application-json", "false");
@@ -145,7 +145,7 @@ public class TaskPartitionerTests {
 		public DataSource dataSource() {
 			DriverManagerDataSource dataSource = new DriverManagerDataSource();
 			dataSource.setDriverClassName(DATASOURCE_DRIVER_CLASS_NAME);
-			dataSource.setUrl(DATASOURCE_URL);
+			dataSource.setUrl(datasourceUrl);
 			dataSource.setUsername(DATASOURCE_USER_NAME);
 			dataSource.setPassword(DATASOURCE_USER_PASSWORD);
 			return dataSource;

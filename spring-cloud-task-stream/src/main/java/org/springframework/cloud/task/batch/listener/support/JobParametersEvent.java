@@ -193,9 +193,9 @@ public class JobParametersEvent {
 
 	@Override
 	public int hashCode() {
-		final int BASE_HASH = 17;
-		final int MULTIPLIER_HASH = 23;
-		return BASE_HASH + MULTIPLIER_HASH * this.parameters.hashCode();
+		final int baseHash = 17;
+		final int multiplierHash = 23;
+		return baseHash + multiplierHash * this.parameters.hashCode();
 	}
 
 	@Override

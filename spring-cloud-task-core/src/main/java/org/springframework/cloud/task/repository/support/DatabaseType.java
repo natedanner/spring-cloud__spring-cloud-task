@@ -122,7 +122,7 @@ public enum DatabaseType {
 				return dbmd.getDatabaseProductName();
 			}
 		}).toString();
-		if (StringUtils.hasText(databaseProductName) && !databaseProductName.equals("DB2/Linux")
+		if (StringUtils.hasText(databaseProductName) && !"DB2/Linux".equals(databaseProductName)
 				&& databaseProductName.startsWith("DB2")) {
 			String databaseProductVersion = JdbcUtils
 				.extractDatabaseMetaData(dataSource, new DatabaseMetaDataCallback() {

@@ -40,15 +40,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = { MultiDataSourcesExternalApplicationTests.TaskLauncherConfiguration.class })
 public class MultiDataSourcesExternalApplicationTests {
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String SECOND_DATASOURCE_URL;
+	private static final String SECOND_DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "''";
+	private static final String DATASOURCE_USER_PASSWORD = "''";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
 	private static int randomPort;
 

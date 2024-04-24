@@ -67,7 +67,7 @@ public class SimpleTaskAutoConfigurationTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withConfiguration(AutoConfigurations.of(PropertyPlaceholderAutoConfiguration.class,
 					SimpleTaskAutoConfiguration.class, SingleTaskConfiguration.class));
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 
 			TaskRepository taskRepository = context.getBean(TaskRepository.class);
 			assertThat(taskRepository).isNotNull();
@@ -82,11 +82,10 @@ public class SimpleTaskAutoConfigurationTests {
 			.withConfiguration(AutoConfigurations.of(PropertyPlaceholderAutoConfiguration.class,
 					SimpleTaskAutoConfiguration.class, SingleTaskConfiguration.class))
 			.withPropertyValues("spring.cloud.task.autoconfiguration.enabled=false");
-		Executable executable = () -> {
-			applicationContextRunner.run((context) -> {
+		Executable executable = () ->
+			applicationContextRunner.run(context -> {
 				context.getBean(TaskRepository.class);
 			});
-		};
 		verifyExceptionThrown(
 				NoSuchBeanDefinitionException.class, "No qualifying "
 						+ "bean of type 'org.springframework.cloud.task.repository.TaskRepository' " + "available",
@@ -100,7 +99,7 @@ public class SimpleTaskAutoConfigurationTests {
 					PropertyPlaceholderAutoConfiguration.class, SimpleTaskAutoConfiguration.class,
 					SingleTaskConfiguration.class))
 			.withUserConfiguration(TaskLifecycleListenerConfiguration.class);
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			TaskExplorer taskExplorer = context.getBean(TaskExplorer.class);
 			assertThat(taskExplorer.getTaskExecutionCount()).isEqualTo(1L);
 		});
@@ -113,7 +112,7 @@ public class SimpleTaskAutoConfigurationTests {
 					PropertyPlaceholderAutoConfiguration.class, SimpleTaskAutoConfiguration.class,
 					SingleTaskConfiguration.class))
 			.withUserConfiguration(TaskLifecycleListenerConfiguration.class);
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			ConfigurableListableBeanFactory beanFactory = context.getBeanFactory();
 			String[] taskRepositoryNames = beanFactory.getBeanNamesForType(TaskRepository.class);
 			assertThat(taskRepositoryNames).isNotEmpty();
@@ -144,7 +143,7 @@ public class SimpleTaskAutoConfigurationTests {
 					SingleTaskConfiguration.class))
 			.withUserConfiguration(TaskLifecycleListenerConfiguration.class)
 			.withPropertyValues("spring.cloud.task.name=myTestName");
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			TaskNameResolver taskNameResolver = context.getBean(TaskNameResolver.class);
 			assertThat(taskNameResolver.getTaskName()).isEqualTo("myTestName");
 		});
@@ -182,11 +181,10 @@ public class SimpleTaskAutoConfigurationTests {
 					SimpleTaskAutoConfiguration.class, SingleTaskConfiguration.class))
 			.withBean("transactionManager", ResourcelessTransactionManager.class)
 			.withPropertyValues("spring.cloud.task.transaction-manager=transactionManager");
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context ->
 			assertThat(context.getBeanNamesForType(PlatformTransactionManager.class)).hasSize(1)
 				.contains("transactionManager")
-				.doesNotContain("springCloudTaskTransactionManager");
-		});
+				.doesNotContain("springCloudTaskTransactionManager"));
 	}
 
 	@Test
@@ -194,34 +192,31 @@ public class SimpleTaskAutoConfigurationTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withConfiguration(AutoConfigurations.of(PropertyPlaceholderAutoConfiguration.class,
 					SimpleTaskAutoConfiguration.class, SingleTaskConfiguration.class));
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context ->
 			assertThat(context.getBeanNamesForType(PlatformTransactionManager.class)).hasSize(1)
 				.contains("springCloudTaskTransactionManager")
-				.doesNotContain("transactionManager");
-		});
+				.doesNotContain("transactionManager"));
 	}
 
 	public void verifyExceptionThrownDefaultExecutable(Class classToCheck,
 			ApplicationContextRunner applicationContextRunner) {
-		Executable executable = () -> {
-			applicationContextRunner.run((context) -> {
+		Executable executable = () ->
+			applicationContextRunner.run(context -> {
 				Throwable expectedException = context.getStartupFailure();
 				assertThat(expectedException).isNotNull();
 				throw expectedException;
 			});
-		};
 		assertThatExceptionOfType(classToCheck).isThrownBy(executable::execute);
 	}
 
 	public void verifyExceptionThrownDefaultExecutable(Class classToCheck, String message,
 			ApplicationContextRunner applicationContextRunner) {
-		Executable executable = () -> {
-			applicationContextRunner.run((context) -> {
+		Executable executable = () ->
+			applicationContextRunner.run(context -> {
 				Throwable expectedException = context.getStartupFailure();
 				assertThat(expectedException).isNotNull();
 				throw expectedException;
 			});
-		};
 		verifyExceptionThrown(classToCheck, message, executable);
 	}
 
@@ -240,7 +235,7 @@ public class SimpleTaskAutoConfigurationTests {
 					PropertyPlaceholderAutoConfiguration.class, SimpleTaskAutoConfiguration.class,
 					SingleTaskConfiguration.class))
 			.withUserConfiguration(DataSourceProxyConfiguration.class);
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			assertThat(context.getBeanNamesForType(DataSource.class).length).isEqualTo(2);
 			SimpleTaskAutoConfiguration taskConfiguration = context.getBean(SimpleTaskAutoConfiguration.class);
 			assertThat(taskConfiguration).isNotNull();

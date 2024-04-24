@@ -85,7 +85,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskStartup(createSampleTaskExecution(BEFORE_LISTENER));
@@ -98,7 +98,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskFailed(createSampleTaskExecution(FAIL_LISTENER),
@@ -112,7 +112,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskEnd(createSampleTaskExecution(AFTER_LISTENER));
@@ -125,7 +125,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskStartup(createSampleTaskExecution(BEFORE_LISTENER));
@@ -144,7 +144,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerMultipleInstanceConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskStartup(createSampleTaskExecution(BEFORE_LISTENER));
@@ -157,7 +157,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerMultipleInstanceConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskFailed(createSampleTaskExecution(FAIL_LISTENER),
@@ -171,7 +171,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerMultipleInstanceConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskEnd(createSampleTaskExecution(AFTER_LISTENER));
@@ -184,7 +184,7 @@ public class TaskListenerExecutorObjectFactoryTests {
 		ApplicationContextRunner applicationContextRunner = new ApplicationContextRunner()
 			.withUserConfiguration(TaskExecutionListenerMultipleInstanceConfiguration.class);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			setup(context);
 
 			this.taskListenerExecutor.onTaskStartup(createSampleTaskExecution(BEFORE_LISTENER));

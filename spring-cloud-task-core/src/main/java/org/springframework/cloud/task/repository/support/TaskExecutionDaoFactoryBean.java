@@ -47,7 +47,7 @@ public class TaskExecutionDaoFactoryBean implements FactoryBean<TaskExecutionDao
 
 	private DataSource dataSource;
 
-	private TaskExecutionDao dao = null;
+	private TaskExecutionDao dao;
 
 	private String tablePrefix = TaskProperties.DEFAULT_TABLE_PREFIX;
 
@@ -97,7 +97,7 @@ public class TaskExecutionDaoFactoryBean implements FactoryBean<TaskExecutionDao
 			catch (MetaDataAccessException e) {
 				throw new IllegalStateException(e);
 			}
-			if (StringUtils.hasText(databaseType) && databaseType.equals("SQLSERVER")) {
+			if (StringUtils.hasText(databaseType) && "SQLSERVER".equals(databaseType)) {
 				String incrementerName = this.tablePrefix + "SEQ";
 				DataFieldMaxValueIncrementerFactory incrementerFactory = new DefaultDataFieldMaxValueIncrementerFactory(
 						dataSource);

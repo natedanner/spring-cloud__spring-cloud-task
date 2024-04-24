@@ -347,9 +347,9 @@ public class TaskLifecycleListenerTests {
 		static List<Integer> endOrderList = new ArrayList<>();
 		static List<Integer> failOrderList = new ArrayList<>();
 
-		private static int currentCount = 0;
+		private static int currentCount;
 
-		private int id = 0;
+		private int id;
 
 		TestListener() {
 			currentCount++;

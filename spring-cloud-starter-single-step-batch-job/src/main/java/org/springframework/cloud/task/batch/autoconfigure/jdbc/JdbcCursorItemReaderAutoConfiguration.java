@@ -121,8 +121,7 @@ public class JdbcCursorItemReaderAutoConfiguration {
 	@Bean(name = "jdbcCursorItemReaderSpringDataSource")
 	public DataSource readerDataSource(
 			@Qualifier("jdbcCursorItemReaderDataSourceProperties") DataSourceProperties readerDataSourceProperties) {
-		DataSource result = readerDataSourceProperties.initializeDataSourceBuilder().build();
-		return result;
+		return readerDataSourceProperties.initializeDataSourceBuilder().build();
 	}
 
 	public static class MapRowMapper implements RowMapper<Map<String, Object>> {

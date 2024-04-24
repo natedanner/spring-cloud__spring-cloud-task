@@ -116,7 +116,7 @@ public class FlatFileItemReaderAutoConfiguration {
 
 		@Override
 		public Map<String, Object> mapFieldSet(FieldSet fieldSet) {
-			return new HashMap<String, Object>((Map) fieldSet.getProperties());
+			return new HashMap<>((Map) fieldSet.getProperties());
 		}
 
 	}

@@ -55,7 +55,7 @@ public class RepositoryTransactionManagerConfigurationTests {
 					SimpleTaskAutoConfiguration.class, ZeroTransactionManagerConfiguration.class))
 			.withPropertyValues("application.name=transactionManagerTask");
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			DataSource dataSource = context.getBean("dataSource", DataSource.class);
 
 			int taskExecutionCount = JdbcTestUtils.countRowsInTable(new JdbcTemplate(dataSource), "TASK_EXECUTION");
@@ -80,7 +80,7 @@ public class RepositoryTransactionManagerConfigurationTests {
 					SimpleTaskAutoConfiguration.class, configurationClass))
 			.withPropertyValues("application.name=transactionManagerTask");
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			DataSource dataSource = context.getBean("dataSource", DataSource.class);
 
 			int taskExecutionCount = JdbcTestUtils.countRowsInTable(new JdbcTemplate(dataSource), "TASK_EXECUTION");
@@ -185,7 +185,7 @@ public class RepositoryTransactionManagerConfigurationTests {
 			super(dataSource);
 		}
 
-		private int count = 0;
+		private int count;
 
 		@Override
 		protected void doCommit(DefaultTransactionStatus status) {

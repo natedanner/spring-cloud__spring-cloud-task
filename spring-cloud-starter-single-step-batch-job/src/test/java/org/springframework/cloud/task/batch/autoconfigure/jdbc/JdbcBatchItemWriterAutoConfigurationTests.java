@@ -65,15 +65,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class JdbcBatchItemWriterAutoConfigurationTests {
 
-	private final static String DATASOURCE_URL;
+	private static final String DATASOURCE_URL;
 
-	private final static String DATASOURCE_USER_NAME = "SA";
+	private static final String DATASOURCE_USER_NAME = "SA";
 
-	private final static String DATASOURCE_USER_PASSWORD = "''";
+	private static final String DATASOURCE_USER_PASSWORD = "''";
 
-	private final static String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
+	private static final String DATASOURCE_DRIVER_CLASS_NAME = "org.h2.Driver";
 
-	private static int randomPort;
+	private static final int randomPort;
 
 	static {
 		randomPort = TestSocketUtils.findAvailableTcpPort();
@@ -202,7 +202,7 @@ public class JdbcBatchItemWriterAutoConfigurationTests {
 	}
 
 	private void runTest(ApplicationContextRunner applicationContextRunner, boolean isWriterDataSourcePresent) {
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);

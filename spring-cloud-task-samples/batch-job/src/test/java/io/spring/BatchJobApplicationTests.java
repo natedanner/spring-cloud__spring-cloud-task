@@ -38,21 +38,21 @@ public class BatchJobApplicationTests {
 
 	@Test
 	public void testBatchJobApp(CapturedOutput capturedOutput) throws Exception {
-		final String JOB_RUN_MESSAGE = " was run";
-		final String CREATE_TASK_MESSAGE = "Creating: TaskExecution{executionId=";
-		final String UPDATE_TASK_MESSAGE = "Updating: TaskExecution with executionId=";
-		final String JOB_ASSOCIATION_MESSAGE = "The job execution id ";
-		final String EXIT_CODE_MESSAGE = "with the following {exitCode=0";
+		final String jobRunMessage = " was run";
+		final String createTaskMessage = "Creating: TaskExecution{executionId=";
+		final String updateTaskMessage = "Updating: TaskExecution with executionId=";
+		final String jobAssociationMessage = "The job execution id ";
+		final String exitCodeMessage = "with the following {exitCode=0";
 
 		SpringApplication.run(BatchJobApplication.class);
 
 		String output = capturedOutput.toString();
-		assertThat(output).contains(JOB_RUN_MESSAGE);
-		assertThat(output).contains(CREATE_TASK_MESSAGE);
-		assertThat(output).contains(UPDATE_TASK_MESSAGE);
-		assertThat(output).contains(EXIT_CODE_MESSAGE);
+		assertThat(output).contains(jobRunMessage);
+		assertThat(output).contains(createTaskMessage);
+		assertThat(output).contains(updateTaskMessage);
+		assertThat(output).contains(exitCodeMessage);
 
-		int i = output.indexOf(JOB_ASSOCIATION_MESSAGE);
+		int i = output.indexOf(jobAssociationMessage);
 
 		assertThat(i).isGreaterThan(0);
 

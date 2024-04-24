@@ -174,11 +174,11 @@ public class StepExecutionEventTests {
 	@Test
 	public void testExitStatus() {
 		StepExecutionEvent stepExecutionEvent = new StepExecutionEvent(getBasicStepExecution());
-		final String EXIT_CODE = "1";
-		final String EXIT_DESCRIPTION = "EXPECTED FAILURE";
+		final String exitCode = "1";
+		final String exitDescription = "EXPECTED FAILURE";
 		ExitStatus exitStatus = new ExitStatus();
-		exitStatus.setExitCode(EXIT_CODE);
-		exitStatus.setExitDescription(EXIT_DESCRIPTION);
+		exitStatus.setExitCode(exitCode);
+		exitStatus.setExitDescription(exitDescription);
 
 		stepExecutionEvent.setExitStatus(exitStatus);
 		ExitStatus actualExitStatus = stepExecutionEvent.getExitStatus();

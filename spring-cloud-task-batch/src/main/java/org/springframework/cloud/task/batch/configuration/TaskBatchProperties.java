@@ -43,7 +43,7 @@ public class TaskBatchProperties {
 	 * the
 	 * {@link org.springframework.boot.autoconfigure.batch.JobLauncherApplicationRunner}).
 	 */
-	private int applicationRunnerOrder = 0;
+	private int applicationRunnerOrder;
 
 	/**
 	 * Fixed delay in milliseconds that Spring Cloud Task will wait when checking if

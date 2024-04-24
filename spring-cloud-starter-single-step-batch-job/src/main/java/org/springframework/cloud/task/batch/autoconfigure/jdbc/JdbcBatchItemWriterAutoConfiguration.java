@@ -115,8 +115,7 @@ public class JdbcBatchItemWriterAutoConfiguration {
 	@Bean(name = "jdbcBatchItemWriterSpringDataSource")
 	public DataSource writerDataSource(
 			@Qualifier("jdbcBatchItemWriterDataSourceProperties") DataSourceProperties writerDataSourceProperties) {
-		DataSource result = writerDataSourceProperties.initializeDataSourceBuilder().build();
-		return result;
+		return writerDataSourceProperties.initializeDataSourceBuilder().build();
 	}
 
 }

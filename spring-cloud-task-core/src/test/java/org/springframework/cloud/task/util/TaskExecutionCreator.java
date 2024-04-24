@@ -48,8 +48,7 @@ public final class TaskExecutionCreator {
 	 * @return the taskExecution created.
 	 */
 	public static TaskExecution createAndStoreTaskExecutionNoParams(TaskRepository taskRepository) {
-		TaskExecution expectedTaskExecution = taskRepository.createTaskExecution();
-		return expectedTaskExecution;
+		return taskRepository.createTaskExecution();
 	}
 
 	/**

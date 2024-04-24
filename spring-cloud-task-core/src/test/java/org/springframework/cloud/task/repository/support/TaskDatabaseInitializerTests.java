@@ -86,9 +86,8 @@ public class TaskDatabaseInitializerTests {
 				PropertyPlaceholderAutoConfiguration.class);
 		DataSource dataSource = mock(DataSource.class);
 		this.context.getBeanFactory().registerSingleton("mockDataSource", dataSource);
-		assertThatExceptionOfType(BeanCreationException.class).isThrownBy(() -> {
-			this.context.refresh();
-		});
+		assertThatExceptionOfType(BeanCreationException.class).isThrownBy(() ->
+			this.context.refresh());
 	}
 
 	@Configuration

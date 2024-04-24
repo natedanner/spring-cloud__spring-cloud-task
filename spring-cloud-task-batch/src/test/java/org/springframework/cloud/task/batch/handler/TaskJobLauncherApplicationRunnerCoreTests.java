@@ -69,7 +69,7 @@ public class TaskJobLauncherApplicationRunnerCoreTests {
 
 	@Test
 	void basicExecution() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			JobLauncherApplicationRunnerContext jobLauncherContext = new JobLauncherApplicationRunnerContext(context);
 			jobLauncherContext.executeJob(new JobParameters());
 			assertThat(jobLauncherContext.jobInstances()).hasSize(1);
@@ -80,7 +80,7 @@ public class TaskJobLauncherApplicationRunnerCoreTests {
 
 	@Test
 	void incrementExistingExecution() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			JobLauncherApplicationRunnerContext jobLauncherContext = new JobLauncherApplicationRunnerContext(context);
 			Job job = jobLauncherContext.configureJob().incrementer(new RunIdIncrementer()).build();
 			jobLauncherContext.runner.execute(job, new JobParameters());
@@ -91,7 +91,7 @@ public class TaskJobLauncherApplicationRunnerCoreTests {
 
 	@Test
 	void runDifferentInstances() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			PlatformTransactionManager transactionManager = context.getBean(PlatformTransactionManager.class);
 			JobLauncherApplicationRunnerContext jobLauncherContext = new JobLauncherApplicationRunnerContext(context);
 			Job job = jobLauncherContext.jobBuilder()
@@ -111,7 +111,7 @@ public class TaskJobLauncherApplicationRunnerCoreTests {
 
 	@Test
 	void retryFailedExecutionOnNonRestartableJob() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			PlatformTransactionManager transactionManager = context.getBean(PlatformTransactionManager.class);
 			JobLauncherApplicationRunnerContext jobLauncherContext = new JobLauncherApplicationRunnerContext(context);
 			Job job = jobLauncherContext.jobBuilder()
@@ -135,7 +135,7 @@ public class TaskJobLauncherApplicationRunnerCoreTests {
 
 	@Test
 	void retryFailedExecutionWithNonIdentifyingParameters() {
-		this.contextRunner.run((context) -> {
+		this.contextRunner.run(context -> {
 			PlatformTransactionManager transactionManager = context.getBean(PlatformTransactionManager.class);
 			JobLauncherApplicationRunnerContext jobLauncherContext = new JobLauncherApplicationRunnerContext(context);
 			Job job = jobLauncherContext.jobBuilder()

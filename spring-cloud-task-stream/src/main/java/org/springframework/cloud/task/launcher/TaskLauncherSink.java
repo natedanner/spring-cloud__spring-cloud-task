@@ -39,7 +39,7 @@ import org.springframework.util.Assert;
 
 public class TaskLauncherSink {
 
-	private final static Logger logger = LoggerFactory.getLogger(TaskLauncherSink.class);
+	private static final Logger logger = LoggerFactory.getLogger(TaskLauncherSink.class);
 
 	// @checkstyle:off
 	@Autowired
@@ -56,9 +56,8 @@ public class TaskLauncherSink {
 	 */
 	@Bean
 	public Consumer<Message<TaskLaunchRequest>> taskLauncherSink() {
-		return messagePayload -> {
+		return messagePayload ->
 			launchTask(messagePayload.getPayload());
-		};
 	}
 
 	private void launchTask(TaskLaunchRequest taskLaunchRequest) {

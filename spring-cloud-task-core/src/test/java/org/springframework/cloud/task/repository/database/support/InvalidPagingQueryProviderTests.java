@@ -32,9 +32,8 @@ public class InvalidPagingQueryProviderTests {
 	@Test
 	public void testInvalidDatabase() throws Exception {
 		Pageable pageable = PageRequest.of(0, 10);
-		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> {
-			TestDBUtils.getPagingQueryProvider("Invalid").getPageQuery(pageable);
-		});
+		assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() ->
+			TestDBUtils.getPagingQueryProvider("Invalid").getPageQuery(pageable));
 	}
 
 }

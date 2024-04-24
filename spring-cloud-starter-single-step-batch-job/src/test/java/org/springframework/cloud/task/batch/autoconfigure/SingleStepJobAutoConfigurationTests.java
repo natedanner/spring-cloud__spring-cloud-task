@@ -128,7 +128,7 @@ public class SingleStepJobAutoConfigurationTests {
 	}
 
 	private void validateConfiguration(ApplicationContextRunner applicationContextRunner) {
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);

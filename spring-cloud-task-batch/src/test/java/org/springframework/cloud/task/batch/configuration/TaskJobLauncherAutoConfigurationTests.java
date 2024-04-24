@@ -54,9 +54,8 @@ public class TaskJobLauncherAutoConfigurationTests {
 		this.contextRunner
 			.withPropertyValues("spring.cloud.task.batch.fail-on-job-failure=true",
 					"spring.cloud.task.batch.applicationRunnerOrder=100")
-			.run(context -> {
-				assertThat(context.getBean(TaskJobLauncherApplicationRunner.class).getOrder()).isEqualTo(100);
-			});
+			.run(context ->
+				assertThat(context.getBean(TaskJobLauncherApplicationRunner.class).getOrder()).isEqualTo(100));
 	}
 
 	@Test
@@ -64,9 +63,8 @@ public class TaskJobLauncherAutoConfigurationTests {
 		this.contextRunner
 			.withPropertyValues("spring.cloud.task.batch.fail-on-job-failure=true", "spring.batch.job.name=job1",
 					"spring.cloud.task.batch.jobName=foobar")
-			.run(context -> {
-				validateJobNames(context, "job1");
-			});
+			.run(context ->
+				validateJobNames(context, "job1"));
 	}
 
 	@Test
@@ -74,9 +72,8 @@ public class TaskJobLauncherAutoConfigurationTests {
 		this.contextRunner
 			.withPropertyValues("spring.cloud.task.batch.fail-on-job-failure=true",
 					"spring.cloud.task.batch.jobNames=job1,job2")
-			.run(context -> {
-				validateJobNames(context, "job1,job2");
-			});
+			.run(context ->
+				validateJobNames(context, "job1,job2"));
 	}
 
 	private void validateJobNames(AssertableApplicationContext context, String jobNames) throws Exception {

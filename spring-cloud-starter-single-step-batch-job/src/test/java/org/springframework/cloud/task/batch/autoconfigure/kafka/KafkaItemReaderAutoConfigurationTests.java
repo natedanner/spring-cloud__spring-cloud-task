@@ -87,7 +87,7 @@ public class KafkaItemReaderAutoConfigurationTests {
 					"spring.batch.job.kafkaitemreader.topic=" + topicName,
 					"spring.kafka.consumer.value-deserializer=" + JsonDeserializer.class.getName());
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);
@@ -130,7 +130,7 @@ public class KafkaItemReaderAutoConfigurationTests {
 					"spring.batch.job.kafkaitemreader.topic=" + topicName,
 					"spring.kafka.consumer.value-deserializer=" + JsonDeserializer.class.getName());
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);
@@ -165,7 +165,7 @@ public class KafkaItemReaderAutoConfigurationTests {
 					"spring.batch.job.kafkaitemreader.topic=" + topicName,
 					"spring.kafka.consumer.value-deserializer=" + JsonDeserializer.class.getName());
 		Date startTime = new Date();
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobLauncher jobLauncher = context.getBean(JobLauncher.class);
 
 			Job job = context.getBean(Job.class);

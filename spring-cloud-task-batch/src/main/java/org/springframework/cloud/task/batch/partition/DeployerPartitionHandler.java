@@ -112,7 +112,7 @@ public class DeployerPartitionHandler implements PartitionHandler, EnvironmentAw
 
 	private int gridSize = 1;
 
-	private int currentWorkers = 0;
+	private int currentWorkers;
 
 	private TaskLauncher taskLauncher;
 
@@ -140,7 +140,7 @@ public class DeployerPartitionHandler implements PartitionHandler, EnvironmentAw
 
 	private CommandLineArgsProvider commandLineArgsProvider;
 
-	private boolean defaultArgsAsEnvironmentVars = false;
+	private boolean defaultArgsAsEnvironmentVars;
 
 	private TaskExecutor taskExecutor;
 
@@ -335,7 +335,7 @@ public class DeployerPartitionHandler implements PartitionHandler, EnvironmentAw
 
 		final Collection<StepExecution> result = new ArrayList<>(executed.size());
 
-		Callable<Collection<StepExecution>> callback = new Callable<Collection<StepExecution>>() {
+		Callable<Collection<StepExecution>> callback = new Callable<>() {
 			@Override
 			public Collection<StepExecution> call() throws Exception {
 				Set<StepExecution> newExecuted = new HashSet<>();

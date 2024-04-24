@@ -59,18 +59,16 @@ public class RangeConverterTests {
 	public void testIllegalValue() {
 		RangeConverter converter = new RangeConverter();
 
-		assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() -> {
-			converter.convert("invalid");
-		});
+		assertThatExceptionOfType(NumberFormatException.class).isThrownBy(() ->
+			converter.convert("invalid"));
 	}
 
 	@Test
 	public void testTooManyValues() {
 		RangeConverter converter = new RangeConverter();
 
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			converter.convert("1-2-3-4");
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			converter.convert("1-2-3-4"));
 	}
 
 }

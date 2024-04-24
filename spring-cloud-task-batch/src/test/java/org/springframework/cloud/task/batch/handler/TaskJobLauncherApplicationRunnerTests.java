@@ -178,7 +178,7 @@ public class TaskJobLauncherApplicationRunnerTests {
 	@Component
 	private static class JobExecutionEventListener implements ApplicationListener<JobExecutionEvent> {
 
-		private int eventCounter = 0;
+		private int eventCounter;
 
 		@Override
 		public void onApplicationEvent(JobExecutionEvent event) {

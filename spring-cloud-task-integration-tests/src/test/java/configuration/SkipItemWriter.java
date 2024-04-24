@@ -24,7 +24,7 @@ import org.springframework.batch.item.ItemWriter;
  */
 public class SkipItemWriter implements ItemWriter {
 
-	int failCount = 0;
+	int failCount;
 
 	@Override
 	public void write(Chunk items) throws Exception {

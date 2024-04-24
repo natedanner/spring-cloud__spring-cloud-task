@@ -468,7 +468,7 @@ public class DeployerPartitionHandlerTests {
 		while (resultsIterator.hasNext()) {
 			StepExecution curResult = resultsIterator.next();
 
-			if (curResult.getStepName().equals("step1:partition2")) {
+			if ("step1:partition2".equals(curResult.getStepName())) {
 				assertThat(curResult.getStatus()).isEqualTo(BatchStatus.FAILED);
 			}
 			else {
@@ -692,9 +692,8 @@ public class DeployerPartitionHandlerTests {
 
 		handler.beforeTask(taskExecution);
 
-		assertThatExceptionOfType(TimeoutException.class).isThrownBy(() -> {
-			handler.handle(this.splitter, masterStepExecution);
-		});
+		assertThatExceptionOfType(TimeoutException.class).isThrownBy(() ->
+			handler.handle(this.splitter, masterStepExecution));
 	}
 
 	@Test

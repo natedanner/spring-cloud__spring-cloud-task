@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
  */
 public class MapTaskBatchDao implements TaskBatchDao {
 
-	private Map<Long, Set<Long>> relationships;
+	private final Map<Long, Set<Long>> relationships;
 
 	public MapTaskBatchDao(Map<Long, Set<Long>> relationships) {
 		Assert.notNull(relationships, "Relationships must not be null");

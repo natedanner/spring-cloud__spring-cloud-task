@@ -49,7 +49,7 @@ public class TaskBatchExecutionListenerBeanPostProcessor implements BeanPostProc
 
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-		if (this.jobNames.size() > 0 && !this.jobNames.contains(beanName)) {
+		if (!this.jobNames.isEmpty() && !this.jobNames.contains(beanName)) {
 			return bean;
 		}
 		int length = this.applicationContext.getBeanNamesForType(TaskBatchExecutionListener.class).length;

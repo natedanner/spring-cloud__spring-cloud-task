@@ -75,7 +75,7 @@ public class SimpleTaskAutoConfiguration {
 	@Autowired
 	private TaskProperties taskProperties;
 
-	private boolean initialized = false;
+	private boolean initialized;
 
 	private TaskRepository taskRepository;
 

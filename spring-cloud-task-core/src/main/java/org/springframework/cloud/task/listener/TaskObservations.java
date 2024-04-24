@@ -48,9 +48,9 @@ public class TaskObservations {
 	 */
 	public static final String UNKNOWN = "unknown";
 
-	private ObservationRegistry observationRegistry;
+	private final ObservationRegistry observationRegistry;
 
-	private ObservationConvention customObservationConvention;
+	private final ObservationConvention customObservationConvention;
 
 	public TaskObservations(ObservationRegistry observationRegistry,
 			TaskObservationCloudKeyValues taskObservationCloudKeyValues,
@@ -62,7 +62,7 @@ public class TaskObservations {
 
 	private Observation.Scope scope;
 
-	private TaskExecutionObservationConvention observationsProvider = new DefaultTaskExecutionObservationConvention();
+	private final TaskExecutionObservationConvention observationsProvider = new DefaultTaskExecutionObservationConvention();
 
 	private TaskExecutionObservationContext taskObservationContext;
 
@@ -108,7 +108,7 @@ public class TaskObservations {
 	}
 
 	private String getValueOrDefault(Object value) {
-		return (value != null) ? value.toString() : UNKNOWN;
+		return value != null ? value.toString() : UNKNOWN;
 	}
 
 	public void onTaskFailed(Throwable throwable) {

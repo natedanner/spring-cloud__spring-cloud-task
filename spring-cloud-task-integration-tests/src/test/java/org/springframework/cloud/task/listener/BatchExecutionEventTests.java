@@ -106,10 +106,10 @@ public class BatchExecutionEventTests {
 		for (int i = 0; i < 4; i++) {
 			StepExecutionEvent stepExecutionEvent = this.objectMapper.readValue(result.get(i).getPayload(),
 					StepExecutionEvent.class);
-			if (stepExecutionEvent.getStepName().equals("step1")) {
+			if ("step1".equals(stepExecutionEvent.getStepName())) {
 				stepOneCount++;
 			}
-			if (stepExecutionEvent.getStepName().equals("step2")) {
+			if ("step2".equals(stepExecutionEvent.getStepName())) {
 				stepTwoCount++;
 			}
 		}
@@ -205,9 +205,9 @@ public class BatchExecutionEventTests {
 
 	@Test
 	public void testSkipEventListener() {
-		final String SKIPPING_READ_MESSAGE = "Skipped when reading.";
+		final String skippingReadMessage = "Skipped when reading.";
 
-		final String SKIPPING_WRITE_CONTENT = "-1";
+		final String skippingWriteContent = "-1";
 		final String bindingName = "skip-event-foobar";
 		List<Message<byte[]>> result = testListenerSkip(
 				"--spring.cloud.task.batch.events.skipEventBindingName=" + bindingName, bindingName, 3);
@@ -215,10 +215,10 @@ public class BatchExecutionEventTests {
 		int writeSkipCount = 0;
 		for (int i = 0; i < 3; i++) {
 			String exceptionMessage = new String(result.get(i).getPayload());
-			if (exceptionMessage.equals(SKIPPING_READ_MESSAGE)) {
+			if (exceptionMessage.equals(skippingReadMessage)) {
 				readSkipCount++;
 			}
-			if (exceptionMessage.equals(SKIPPING_WRITE_CONTENT)) {
+			if (exceptionMessage.equals(skippingWriteContent)) {
 				writeSkipCount++;
 			}
 		}

@@ -65,9 +65,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Tag("DockerRequired")
 public class AmqpItemWriterAutoConfigurationTests {
 
-	private final static String QUEUE_NAME = "foo";
+	private static final String QUEUE_NAME = "foo";
 
-	private final static String EXCHANGE_NAME = "fooexchange";
+	private static final String EXCHANGE_NAME = "fooexchange";
 
 	private static int amqpPort;
 
@@ -133,7 +133,7 @@ public class AmqpItemWriterAutoConfigurationTests {
 							RabbitAutoConfiguration.class, DataSourceAutoConfiguration.class))
 			.withPropertyValues(this.configurations);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			JobExecution jobExecution = runJob(context);
 			JobExplorer jobExplorer = context.getBean(JobExplorer.class);
 
@@ -157,7 +157,7 @@ public class AmqpItemWriterAutoConfigurationTests {
 					AmqpItemWriterAutoConfiguration.class, DataSourceAutoConfiguration.class))
 			.withPropertyValues(this.configurations);
 
-		applicationContextRunner.run((context) -> {
+		applicationContextRunner.run(context -> {
 			runJob(context);
 			AmqpTemplate amqpTemplate = context.getBean(AmqpTemplate.class);
 			Mockito.verify(amqpTemplate, Mockito.times(5)).convertAndSend(Mockito.any());

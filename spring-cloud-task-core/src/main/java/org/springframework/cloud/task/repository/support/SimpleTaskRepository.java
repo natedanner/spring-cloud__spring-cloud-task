@@ -57,7 +57,7 @@ public class SimpleTaskRepository implements TaskRepository {
 
 	private FactoryBean<TaskExecutionDao> taskExecutionDaoFactoryBean;
 
-	private boolean initialized = false;
+	private boolean initialized;
 
 	private int maxExitMessageSize = MAX_EXIT_MESSAGE_SIZE;
 

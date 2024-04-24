@@ -61,7 +61,7 @@ public class TaskLaunchRequest implements Serializable {
 		Assert.hasText(uri, "uri must not be empty nor null.");
 
 		this.uri = uri;
-		this.commandlineArguments = (commandlineArguments == null) ? new ArrayList<>() : commandlineArguments;
+		this.commandlineArguments = commandlineArguments == null ? new ArrayList<>() : commandlineArguments;
 		this.environmentProperties = environmentProperties == null ? new HashMap<>() : environmentProperties;
 		this.deploymentProperties = deploymentProperties == null ? new HashMap<>() : deploymentProperties;
 		setApplicationName(applicationName);
@@ -121,8 +121,8 @@ public class TaskLaunchRequest implements Serializable {
 	 * @param applicationName the name to be
 	 */
 	public void setApplicationName(String applicationName) {
-		this.applicationName = !StringUtils.hasText(applicationName) ? "Task-" + UUID.randomUUID().toString()
-				: applicationName;
+		this.applicationName = StringUtils.hasText(applicationName) ? applicationName
+				: "Task-" + UUID.randomUUID().toString();
 	}
 
 	@Override
@@ -158,11 +158,11 @@ public class TaskLaunchRequest implements Serializable {
 
 	@Override
 	public int hashCode() {
-		final int HASH_DEFAULT = 31;
+		final int hashDefault = 31;
 		int result = this.uri.hashCode();
-		result = HASH_DEFAULT * result + this.commandlineArguments.hashCode();
-		result = HASH_DEFAULT * result + this.environmentProperties.hashCode();
-		result = HASH_DEFAULT * result + this.deploymentProperties.hashCode();
+		result = hashDefault * result + this.commandlineArguments.hashCode();
+		result = hashDefault * result + this.environmentProperties.hashCode();
+		result = hashDefault * result + this.deploymentProperties.hashCode();
 		return result;
 	}
 

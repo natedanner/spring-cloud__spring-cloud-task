@@ -91,9 +91,8 @@ public class SimpleTaskRepositoryMapTests {
 		TaskExecution expectedTaskExecution = TaskExecutionCreator
 			.createAndStoreTaskExecutionNoParams(this.taskRepository);
 		expectedTaskExecution.setExternalExecutionId(null);
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			this.taskRepository.updateExternalExecutionId(-1, expectedTaskExecution.getExternalExecutionId());
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			this.taskRepository.updateExternalExecutionId(-1, expectedTaskExecution.getExternalExecutionId()));
 	}
 
 	@Test
@@ -177,9 +176,8 @@ public class SimpleTaskRepositoryMapTests {
 		TaskExecution expectedTaskExecution = TaskExecutionCreator
 			.createAndStoreTaskExecutionNoParams(this.taskRepository);
 		expectedTaskExecution.setExitCode(-1);
-		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> {
-			TaskExecutionCreator.completeExecution(this.taskRepository, expectedTaskExecution);
-		});
+		assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() ->
+			TaskExecutionCreator.completeExecution(this.taskRepository, expectedTaskExecution));
 	}
 
 }

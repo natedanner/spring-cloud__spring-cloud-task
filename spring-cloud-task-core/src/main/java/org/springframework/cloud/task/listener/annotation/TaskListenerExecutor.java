@@ -35,11 +35,11 @@ import org.springframework.cloud.task.repository.TaskExecution;
  */
 public class TaskListenerExecutor implements TaskExecutionListener {
 
-	private Map<Method, Set<Object>> beforeTaskInstances;
+	private final Map<Method, Set<Object>> beforeTaskInstances;
 
-	private Map<Method, Set<Object>> afterTaskInstances;
+	private final Map<Method, Set<Object>> afterTaskInstances;
 
-	private Map<Method, Set<Object>> failedTaskInstances;
+	private final Map<Method, Set<Object>> failedTaskInstances;
 
 	public TaskListenerExecutor(Map<Method, Set<Object>> beforeTaskInstances,
 			Map<Method, Set<Object>> afterTaskInstances, Map<Method, Set<Object>> failedTaskInstances) {
